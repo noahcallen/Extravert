@@ -18,6 +18,8 @@ namespace Plant
 
             string userChoice;
 
+            Random random = new Random();
+
             do
             {
                 Console.WriteLine("Want Some Plants?");
@@ -141,6 +143,9 @@ namespace Plant
                         break;
 
                     case "e":
+                        int randomInteger = random.Next(plants.Count);
+                        Plant randomPlant = plants[randomInteger];
+                        Console.WriteLine($"The Plant of the day is : {randomPlant.Species}");
                         
                         break;
 
