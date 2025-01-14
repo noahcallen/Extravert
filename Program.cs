@@ -22,7 +22,7 @@ namespace Plant
             {
                 Console.WriteLine("Want Some Plants?");
                 Console.WriteLine("Select one of the following options:");
-                Console.WriteLine("\n a. Display all plants \n b. Add a plant to be adopted \n c. Adopt a plant \n d. Delist a plant \n e. Quit");
+                Console.WriteLine("\n a. Display all plants \n b. Add a plant to be adopted \n c. Adopt a plant \n d. Delist a plant \n e. Plant of the day \n f. Quit");
 
                 Console.Write("Enter your choice: ");
                 userChoice = Console.ReadLine();
@@ -120,9 +120,31 @@ namespace Plant
                         Console.Write("Type the name of the plant you want to remove: ");
                         string remove = Console.ReadLine();
 
+                        // Use a for loop to safely remove an item from the list
+                        bool item = false;
+
+                        for (int i = 0; i < plants.Count; i++)
+                        {
+                            if (plants[i].Species.Equals(remove, StringComparison.OrdinalIgnoreCase))
+                            {
+                                plants.RemoveAt(i); // Remove the plant at index i
+                                item = true;
+                                Console.WriteLine($"{remove} has been removed from the list.");
+                                break; // Exit the loop after removing the plant
+                            }
+                        }
+
+                        if (!item)
+                        {
+                            Console.WriteLine($"No plant with the name \"{remove}\" was found.");
+                        }
                         break;
 
                     case "e":
+                        
+                        break;
+
+                    case "f":
                         Console.WriteLine("Fine... Didn't want to give you a plant anyway >:/ !");
                         break;
 
@@ -133,7 +155,7 @@ namespace Plant
 
                 Console.WriteLine(); // Adds a blank line for readability
 
-            } while (userChoice != "e"); // Continue looping until user enters "e"
+            } while (userChoice != "f"); // Continue looping until user enters "e"
         }
     }
 }
