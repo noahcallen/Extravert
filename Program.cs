@@ -5,6 +5,7 @@ namespace Plant
 {
     class Program
     {
+      
         public static void Main()
         {
             List<Plant> plants = new List<Plant>
@@ -24,7 +25,7 @@ namespace Plant
             {
                 Console.WriteLine("Want Some Plants?");
                 Console.WriteLine("Select one of the following options:");
-                Console.WriteLine("\n a. Display all plants \n b. Add a plant to be adopted \n c. Adopt a plant \n d. Delist a plant \n e. Plant of the day \n f. Quit");
+                Console.WriteLine("\n a. Display all plants \n b. Add a plant to be adopted \n c. Adopt a plant \n d. Delist a plant \n e. Plant of the day \n f. Quit \n g. Search by Light Needed");
 
                 Console.Write("Enter your choice: ");
                 userChoice = Console.ReadLine();
@@ -127,7 +128,7 @@ namespace Plant
 
                         for (int i = 0; i < plants.Count; i++)
                         {
-                            if (plants[i].Species.Equals(remove, StringComparison.OrdinalIgnoreCase))
+                            if (plants[i].Species.Equals(remove))
                             {
                                 plants.RemoveAt(i); // Remove the plant at index i
                                 item = true;
@@ -153,6 +154,29 @@ namespace Plant
                         Console.WriteLine("Fine... Didn't want to give you a plant anyway >:/ !");
                         break;
 
+                    case "g":
+                Console.WriteLine("5. full sun | 4. a lot of sun | 3. some sun | 2. little sun | 1. no sun");
+                Console.WriteLine("What Light Level Plants are you wanting to see?");
+                Console.Write("Write your choice here: ");
+                string lightChoice = Console.ReadLine();
+
+                
+
+                for (int i = 0; i < plants.Count; i++)
+                {
+                    // Case-insensitive comparison
+                    if (plants[i].LightNeeded.Equals(lightChoice))
+                    {
+                        Console.WriteLine(plants[i].Species);
+                        
+                    }
+                }
+
+                // If no plants are found
+                
+
+                break;
+  
                     default:
                         Console.WriteLine("Oops! Dumbass! You did not pick a valid option!");
                         break;
@@ -160,7 +184,7 @@ namespace Plant
 
                 Console.WriteLine(); // Adds a blank line for readability
 
-            } while (userChoice != "f"); // Continue looping until user enters "e"
+            } while (userChoice != "f"); // Continue looping until user enters "f"
         }
     }
 }
