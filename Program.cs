@@ -10,11 +10,11 @@ namespace Plant
         {
             List<Plant> plants = new List<Plant>
             {
-                new Plant {Species = "Cactus", LightNeeded = "full sun", AskingPrice = 5, City = "Somerset", ZIP = 42503, Sold = false},
-                new Plant {Species = "Bamboo", LightNeeded = "some sun", AskingPrice = 7, City = "Richmond", ZIP = 42507, Sold = true},
-                new Plant {Species = "SugarCane", LightNeeded = "a lot sun", AskingPrice = 7, City = "Richmond", ZIP = 42507, Sold = false},
-                new Plant {Species = "Fern", LightNeeded = "little sun", AskingPrice = 10, City = "Florence", ZIP = 41005, Sold = true},
-                new Plant {Species = "DripLeaf", LightNeeded = "no sun", AskingPrice = 7, City = "Somerset", ZIP = 42503, Sold = false},
+                new Plant {Species = "Cactus", LightNeeded = "full sun", AskingPrice = 5, City = "Somerset", ZIP = 42503, Sold = false, AvailableUntil = new DateTime(2025, 08, 10)},
+                new Plant {Species = "Bamboo", LightNeeded = "some sun", AskingPrice = 7, City = "Richmond", ZIP = 42507, Sold = true, AvailableUntil = new DateTime(2025, 09, 10)},
+                new Plant {Species = "SugarCane", LightNeeded = "a lot sun", AskingPrice = 7, City = "Richmond", ZIP = 42507, Sold = false, AvailableUntil = new DateTime(2025, 07, 10)},
+                new Plant {Species = "Fern", LightNeeded = "little sun", AskingPrice = 10, City = "Florence", ZIP = 41005, Sold = true, AvailableUntil = new DateTime(2025, 06, 10)},
+                new Plant {Species = "DripLeaf", LightNeeded = "no sun", AskingPrice = 7, City = "Somerset", ZIP = 42503, Sold = false, AvailableUntil = new DateTime(2025, 05, 10)},
             };
 
             string userChoice;
@@ -64,6 +64,12 @@ namespace Plant
                             Console.WriteLine("Invalid ZIP code! Please enter a number.");
                             break;
                         }
+                        Console.Write("Enter the date that this plant is available until (yyyy/mm/dd): ");
+                         if (!DateTime.TryParse(Console.ReadLine(), out DateTime availableUntil))
+                        {
+                            Console.WriteLine("Invalid price! Please enter a number.");
+                            break;
+                        }
 
                         plants.Add(new Plant
                         {
@@ -72,7 +78,8 @@ namespace Plant
                             AskingPrice = askingPrice,
                             City = city,
                             ZIP = zip,
-                            Sold = false
+                            Sold = false,
+                            AvailableUntil = availableUntil
                         });
 
                         Console.WriteLine($"Successfully added {species} to the list!");
